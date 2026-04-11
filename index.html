@@ -7,19 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --bg1: #0f0c29; --bg2: #302b63; --bg3: #1a1035;
-}
-
+:root { --bg1: #0f0c29; --bg2: #302b63; --bg3: #1a1035; }
 html, body {
   width: 100%; height: 100%; overflow: hidden;
   font-family: 'Nunito', sans-serif;
   background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 50%, var(--bg3) 100%);
   color: #fff;
 }
-
-/* ── STARS ── */
 #stars-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
 .star {
   position: absolute; background: #fff; border-radius: 50%;
@@ -27,52 +21,25 @@ html, body {
   opacity: 0; animation-delay: var(--del, 0s);
 }
 @keyframes twinkle { 0%,100%{opacity:0} 50%{opacity:var(--op,0.6)} }
-
-/* ── SCREENS ── */
-.screen {
-  position: fixed; inset: 0; z-index: 1;
-  display: flex; flex-direction: column; align-items: center;
-}
+.screen { position: fixed; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; }
 .screen.hidden { display: none !important; }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   MENU SCREEN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-#menu-screen {
-  justify-content: flex-start;
-  padding: 16px 16px 40px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
+/* MENU */
+#menu-screen { justify-content: flex-start; padding: 16px 16px 40px; overflow-y: auto; overscroll-behavior: contain; }
 #menu-screen::-webkit-scrollbar { width: 4px; }
 #menu-screen::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
-
 .menu-title {
   font-family: 'Fredoka One', cursive;
   font-size: clamp(2.8rem, 9vw, 5.5rem);
-  text-align: center;
-  margin-top: 12px; margin-bottom: 4px;
+  text-align: center; margin-top: 12px; margin-bottom: 20px;
   background: linear-gradient(90deg, #ffd700 0%, #ff9ff3 30%, #48dbfb 60%, #ffd700 100%);
   background-size: 250%;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   animation: shimmer 4s linear infinite;
-  filter: drop-shadow(0 3px 12px rgba(255,215,0,0.35));
-  line-height: 1.1;
+  filter: drop-shadow(0 3px 12px rgba(255,215,0,0.35)); line-height: 1.1;
 }
 @keyframes shimmer { 0%{background-position:0%} 100%{background-position:250%} }
-
-.menu-sub {
-  font-size: clamp(0.85rem, 2.5vw, 1.15rem); font-weight: 800;
-  color: #b8c1ec; text-align: center;
-  margin-bottom: 24px; letter-spacing: 0.3px;
-}
-
-.theme-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 18px; width: 100%; max-width: 900px;
-}
-
+.theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; width: 100%; max-width: 900px; }
 .theme-card {
   border-radius: 28px; padding: 48px 20px 36px;
   display: flex; flex-direction: column; align-items: center; gap: 18px;
@@ -81,34 +48,22 @@ html, body {
   transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), box-shadow 0.28s ease;
   -webkit-tap-highlight-color: transparent; user-select: none;
 }
-.theme-card::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.22) 0%, transparent 55%);
-  pointer-events: none;
-}
-.theme-card::after {
-  content: ''; position: absolute; inset: 0; border-radius: 22px;
-  border: 1.5px solid rgba(255,255,255,0.25); pointer-events: none;
-}
+.theme-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.22) 0%, transparent 55%); pointer-events: none; }
+.theme-card::after { content: ''; position: absolute; inset: 0; border-radius: 28px; border: 1.5px solid rgba(255,255,255,0.25); pointer-events: none; }
 .theme-card:hover  { transform: translateY(-7px) scale(1.06); }
 .theme-card:active { transform: translateY(-2px) scale(1.02); }
 @keyframes tCardIn { from{opacity:0;transform:translateY(22px) scale(0.88)} to{opacity:1;transform:none} }
-
 .theme-emoji { font-size: 6rem; line-height: 1; filter: drop-shadow(0 3px 8px rgba(0,0,0,0.3)); }
 .theme-name  { font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,0.4); text-align: center; }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GAME SCREEN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* GAME */
 #game-screen { overflow: hidden; }
-
 .game-hud {
   width: 100%; display: flex; align-items: center; justify-content: space-between;
   padding: 10px 14px; flex-shrink: 0;
   background: rgba(255,255,255,0.06); backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-
 .back-btn {
   font-family: 'Fredoka One', cursive; font-size: 0.95rem;
   background: rgba(255,255,255,0.14); border: 2px solid rgba(255,255,255,0.22);
@@ -116,52 +71,32 @@ html, body {
   cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 5px;
 }
 .back-btn:hover { background: rgba(255,255,255,0.24); transform: scale(1.05); }
-
 .hud-stats { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
-.hud-stat {
-  display: flex; align-items: center; gap: 5px;
-  background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 50px;
-  font-size: 0.8rem; font-weight: 800;
-}
+.hud-stat { display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; }
 .hud-icon { font-size: 1rem; }
 .hud-val { color: #ffd700; font-family: 'Fredoka One', cursive; font-size: 1rem; }
-
-.board-wrap {
-  flex: 1; display: flex; align-items: center; justify-content: center;
-  padding: 6px; overflow: hidden; width: 100%;
-}
-
+.board-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 6px; overflow: hidden; width: 100%; }
 .game-board {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: clamp(4px, 0.8vw, 8px);
-  /* Fill height while respecting width — 6:5 aspect ratio */
   aspect-ratio: 6 / 5;
   width: min(96vw, calc((100vh - 62px) * 1.2));
   max-height: calc(100vh - 62px);
 }
 
-/* ── CARDS ── */
-.card {
-  aspect-ratio: 1; perspective: 700px;
-  cursor: pointer; -webkit-tap-highlight-color: transparent;
-}
+/* CARDS */
+.card { aspect-ratio: 1; perspective: 700px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .card-inner {
   width: 100%; height: 100%; position: relative;
   transform-style: preserve-3d;
   transition: transform 0.45s cubic-bezier(.4,0,.2,1);
   border-radius: 13px;
 }
-.card.flipped .card-inner,
-.card.matched .card-inner { transform: rotateY(180deg); }
-
-.card-face {
-  position: absolute; inset: 0; border-radius: 13px;
-  display: flex; align-items: center; justify-content: center;
-  backface-visibility: hidden; -webkit-backface-visibility: hidden;
-}
-.card-back  { /* themed via JS */ }
+.card.flipped .card-inner, .card.matched .card-inner { transform: rotateY(180deg); }
+.card-face { position: absolute; inset: 0; border-radius: 13px; display: flex; align-items: center; justify-content: center; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.card-back { /* themed via JS */ }
 .card-front {
   transform: rotateY(180deg);
   background: linear-gradient(145deg, #ffffff 0%, #f0f4ff 100%);
@@ -169,13 +104,8 @@ html, body {
   line-height: 1;
   box-shadow: inset 0 0 0 2.5px rgba(255,255,255,0.85);
 }
+.fast-flip .card-inner { transition: transform 0.18s cubic-bezier(.4,0,.2,1) !important; }
 
-/* Fast flip after first move */
-.fast-flip .card-inner {
-  transition: transform 0.18s cubic-bezier(.4,0,.2,1) !important;
-}
-
-/* match glow + bounce */
 @keyframes matchBounce {
   0%   { transform: rotateY(180deg) scale(1); }
   18%  { transform: rotateY(180deg) scale(1.22); }
@@ -185,12 +115,8 @@ html, body {
   100% { transform: rotateY(180deg) scale(1); }
 }
 .card.matched .card-inner { animation: matchBounce 0.65s ease forwards; }
-.card.matched .card-front {
-  background: linear-gradient(145deg, #fffde7, #fff9c4);
-  box-shadow: 0 0 0 3px #ffd700, 0 0 18px rgba(255,215,0,0.55), inset 0 0 0 2px rgba(255,215,0,0.5);
-}
+.card.matched .card-front { background: linear-gradient(145deg, #fffde7, #fff9c4); box-shadow: 0 0 0 3px #ffd700, 0 0 18px rgba(255,215,0,0.55), inset 0 0 0 2px rgba(255,215,0,0.5); }
 
-/* wrong shake */
 @keyframes wrongShake {
   0%,100% { transform: rotateY(180deg) translateX(0); }
   20%      { transform: rotateY(180deg) translateX(-5px); }
@@ -198,43 +124,17 @@ html, body {
   60%      { transform: rotateY(180deg) translateX(-4px); }
   80%      { transform: rotateY(180deg) translateX(4px); }
 }
-.card.wrong .card-inner  { animation: wrongShake 0.42s ease; }
-.card.wrong .card-front  { background: linear-gradient(145deg, #ffebee, #ffcdd2); }
+.card.wrong .card-inner { animation: wrongShake 0.42s ease; }
+.card.wrong .card-front { background: linear-gradient(145deg, #ffebee, #ffcdd2); }
+.card:not(.matched):not(.flipped):hover .card-inner { transform: scale(1.06) translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.35); }
 
-/* hover idle wiggle */
-.card:not(.matched):not(.flipped):hover .card-inner {
-  transform: scale(1.06) translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-}
+.match-ripple { position: fixed; border-radius: 50%; pointer-events: none; z-index: 49; border: 2.5px solid #ffd700; animation: rippleOut 0.6s ease forwards; transform-origin: center; }
+@keyframes rippleOut { 0%{transform:translate(-50%,-50%) scale(0);opacity:1} 100%{transform:translate(-50%,-50%) scale(5);opacity:0} }
+.match-particle { position: fixed; pointer-events: none; z-index: 50; font-size: clamp(1rem, 2vw, 1.5rem); animation: partFloat var(--pdur, 0.7s) ease forwards; }
+@keyframes partFloat { 0%{transform:translate(0,0) scale(1);opacity:1} 100%{transform:translate(var(--tx,0),var(--ty,0)) scale(0);opacity:0} }
 
-/* ── MATCH RIPPLE ── */
-.match-ripple {
-  position: fixed; border-radius: 50%; pointer-events: none; z-index: 49;
-  border: 2.5px solid #ffd700;
-  animation: rippleOut 0.6s ease forwards;
-  transform-origin: center;
-}
-@keyframes rippleOut {
-  0%   { transform: translate(-50%,-50%) scale(0); opacity:1; }
-  100% { transform: translate(-50%,-50%) scale(5); opacity:0; }
-}
-.match-particle {
-  position: fixed; pointer-events: none; z-index: 50;
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  animation: partFloat var(--pdur, 0.7s) ease forwards;
-}
-@keyframes partFloat {
-  0%   { transform: translate(0,0) scale(1); opacity:1; }
-  100% { transform: translate(var(--tx,0), var(--ty,0)) scale(0); opacity:0; }
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   WIN SCREEN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-#win-screen {
-  background: rgba(10, 8, 30, 0.88); backdrop-filter: blur(10px);
-  justify-content: center; z-index: 100;
-}
+/* WIN */
+#win-screen { background: rgba(10,8,30,0.88); backdrop-filter: blur(10px); justify-content: center; z-index: 100; }
 .win-card {
   background: linear-gradient(145deg, #1a1540, #2d1b69);
   border: 1.5px solid rgba(255,215,0,0.35); border-radius: 28px;
@@ -245,76 +145,36 @@ html, body {
   animation: winPop 0.6s cubic-bezier(.34,1.56,.64,1) both;
 }
 @keyframes winPop { from{transform:scale(0.2);opacity:0} to{transform:scale(1);opacity:1} }
-
-.win-big-emoji {
-  font-size: clamp(3.5rem, 10vw, 5.5rem);
-  display: block; margin-bottom: 10px;
-  animation: emojiSpin 0.9s cubic-bezier(.34,1.56,.64,1) both 0.1s;
-}
+.win-big-emoji { font-size: clamp(3.5rem,10vw,5.5rem); display: block; margin-bottom: 10px; animation: emojiSpin 0.9s cubic-bezier(.34,1.56,.64,1) both 0.1s; }
 @keyframes emojiSpin { from{transform:scale(0) rotate(-200deg)} to{transform:scale(1) rotate(0deg)} }
-
-.win-h { font-family: 'Fredoka One', cursive; font-size: clamp(2rem,7vw,3.2rem);
-  background: linear-gradient(90deg, #ffd700, #ff9ff3); -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; margin-bottom: 4px; }
+.win-h { font-family: 'Fredoka One', cursive; font-size: clamp(2rem,7vw,3.2rem); background: linear-gradient(90deg,#ffd700,#ff9ff3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px; }
 .win-sub { color: #b8c1ec; font-size: 0.95rem; margin-bottom: 22px; }
-
 .win-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
-.win-stat-box {
-  background: rgba(255,255,255,0.08); border-radius: 16px; padding: 14px 10px;
-}
+.win-stat-box { background: rgba(255,255,255,0.08); border-radius: 16px; padding: 14px 10px; }
 .win-sicon { font-size: 1.7rem; display: block; margin-bottom: 3px; }
 .win-sval  { font-family: 'Fredoka One', cursive; font-size: 1.9rem; color: #ffd700; display: block; }
 .win-slbl  { font-size: 0.72rem; color: #b8c1ec; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
-
 .win-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-.win-btn {
-  font-family: 'Fredoka One', cursive; font-size: 1.05rem;
-  padding: 13px 26px; border: none; border-radius: 50px; cursor: pointer;
-  transition: all 0.25s cubic-bezier(.34,1.56,.64,1);
-}
+.win-btn { font-family: 'Fredoka One', cursive; font-size: 1.05rem; padding: 13px 26px; border: none; border-radius: 50px; cursor: pointer; transition: all 0.25s cubic-bezier(.34,1.56,.64,1); }
 .win-btn:hover { transform: scale(1.1); }
 .win-btn.primary { background: linear-gradient(135deg, #ffd700, #ff9f43); color: #1a1a2e; box-shadow: 0 4px 22px rgba(255,215,0,0.45); }
 .win-btn.secondary { background: rgba(255,255,255,0.1); color: #fff; border: 2px solid rgba(255,255,255,0.22); }
-
-/* ── CONFETTI ── */
-#confetti-box {
-  position: fixed; inset: 0; pointer-events: none; z-index: 100; overflow: hidden;
-}
-.cpiece {
-  position: absolute; top: -16px;
-  animation: cFall linear forwards;
-}
-@keyframes cFall {
-  0%   { transform: translateY(0) rotate(0deg); opacity:1; }
-  80%  { opacity:1; }
-  100% { transform: translateY(110vh) rotate(600deg); opacity:0; }
-}
-
-/* ── RATING STARS ── */
+#confetti-box { position: fixed; inset: 0; pointer-events: none; z-index: 100; overflow: hidden; }
+.cpiece { position: absolute; top: -16px; animation: cFall linear forwards; }
+@keyframes cFall { 0%{transform:translateY(0) rotate(0deg);opacity:1} 80%{opacity:1} 100%{transform:translateY(110vh) rotate(600deg);opacity:0} }
 .star-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 16px; }
-.rating-star {
-  font-size: 1.8rem;
-  animation: starIn 0.4s cubic-bezier(.34,1.56,.64,1) backwards;
-}
+.rating-star { font-size: 1.8rem; animation: starIn 0.4s cubic-bezier(.34,1.56,.64,1) backwards; }
 @keyframes starIn { from{transform:scale(0) rotate(-90deg)} to{transform:scale(1) rotate(0)} }
 </style>
 </head>
 <body>
-
-<!-- ░ Stars background ░ -->
 <div id="stars-bg"></div>
 
-<!-- ░░░░░░░░░░░░░░░░░░░
-     MENU SCREEN
-░░░░░░░░░░░░░░░░░░░ -->
 <div class="screen" id="menu-screen">
   <h1 class="menu-title">✨ Memory Magic</h1>
   <div class="theme-grid" id="theme-grid"></div>
 </div>
 
-<!-- ░░░░░░░░░░░░░░░░░░░
-     GAME SCREEN
-░░░░░░░░░░░░░░░░░░░ -->
 <div class="screen hidden" id="game-screen">
   <div class="game-hud">
     <button class="back-btn" id="back-btn">← Back</button>
@@ -329,9 +189,6 @@ html, body {
   </div>
 </div>
 
-<!-- ░░░░░░░░░░░░░░░░░░░
-     WIN SCREEN
-░░░░░░░░░░░░░░░░░░░ -->
 <div class="screen hidden" id="win-screen">
   <div class="win-card">
     <span class="win-big-emoji" id="win-emoji">🎉</span>
@@ -339,16 +196,8 @@ html, body {
     <p class="win-sub" id="win-sub-text">Amazing job!</p>
     <div class="star-row" id="star-row"></div>
     <div class="win-stats">
-      <div class="win-stat-box">
-        <span class="win-sicon">🔄</span>
-        <span class="win-sval" id="win-moves-val">0</span>
-        <span class="win-slbl">Moves</span>
-      </div>
-      <div class="win-stat-box">
-        <span class="win-sicon">⏱</span>
-        <span class="win-sval" id="win-time-val">0:00</span>
-        <span class="win-slbl">Time</span>
-      </div>
+      <div class="win-stat-box"><span class="win-sicon">🔄</span><span class="win-sval" id="win-moves-val">0</span><span class="win-slbl">Moves</span></div>
+      <div class="win-stat-box"><span class="win-sicon">⏱</span><span class="win-sval" id="win-time-val">0:00</span><span class="win-slbl">Time</span></div>
     </div>
     <div class="win-btns">
       <button class="win-btn primary" id="btn-again">🔁 Play Again</button>
@@ -359,102 +208,35 @@ html, body {
 </div>
 
 <script>
-/* ================================================================
-   THEMES DATA
-================================================================ */
 const THEMES = [
-  {
-    id:'animals', name:'Animals', icon:'🐾',
-    gradient:'linear-gradient(135deg,#ff6b9d,#ff8e53)',
-    shadow:'rgba(255,107,157,0.55)',
-    cards:['🐶','🐱','🦊','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐙','🦋','🐢','🦒','🐧']
-  },
-  {
-    id:'space', name:'Space', icon:'🚀',
-    gradient:'linear-gradient(135deg,#667eea,#764ba2)',
-    shadow:'rgba(102,126,234,0.55)',
-    cards:['🚀','🌍','🌙','⭐','🪐','☄️','🛸','💫','🔭','🌠','👨‍🚀','🌞','🌌','🛰️','🌟']
-  },
-  {
-    id:'food', name:'Yummy Food', icon:'🍕',
-    gradient:'linear-gradient(135deg,#f9ca24,#f0932b)',
-    shadow:'rgba(249,202,36,0.55)',
-    cards:['🍕','🍔','🌮','🍦','🍩','🎂','🍪','🧁','🍭','🍫','🥪','🍜','🍣','🥐','🍎']
-  },
-  {
-    id:'ocean', name:'Ocean', icon:'🐠',
-    gradient:'linear-gradient(135deg,#48dbfb,#0abde3)',
-    shadow:'rgba(72,219,251,0.55)',
-    cards:['🐠','🐬','🦈','🐙','🦑','🦀','🐡','🐚','🐳','🌊','🦭','🐟','🦐','🪸','🐋']
-  },
-  {
-    id:'dinos', name:'Dinosaurs', icon:'🦕',
-    gradient:'linear-gradient(135deg,#6ab04c,#badc58)',
-    shadow:'rgba(106,176,76,0.55)',
-    cards:['🦕','🦖','🥚','🌋','🐾','🌿','🦴','💎','🌺','🍖','🔥','🌴','🦎','🐊','🌎']
-  },
-  {
-    id:'sports', name:'Sports', icon:'⚽',
-    gradient:'linear-gradient(135deg,#ff9f43,#ee5a24)',
-    shadow:'rgba(255,159,67,0.55)',
-    cards:['⚽','🏀','🎾','🏈','🎱','🏓','🏸','🥊','🎿','🏊','🚴','🤸','🥅','🏆','🎯']
-  },
-  {
-    id:'fruits', name:'Fruits', icon:'🍓',
-    gradient:'linear-gradient(135deg,#fd79a8,#e17055)',
-    shadow:'rgba(253,121,168,0.55)',
-    cards:['🍎','🍊','🍋','🍇','🍓','🍑','🍒','🍍','🥭','🍈','🫐','🍉','🥥','🍌','🍐']
-  },
-  {
-    id:'garden', name:'Garden', icon:'🌸',
-    gradient:'linear-gradient(135deg,#e056fd,#7d5fff)',
-    shadow:'rgba(224,86,253,0.55)',
-    cards:['🌸','🌺','🌻','🌹','🌷','💐','🌼','🌱','🍀','🌵','🎋','🍁','🍄','🌾','🪷']
-  },
-  {
-    id:'fantasy', name:'Fantasy', icon:'🐉',
-    gradient:'linear-gradient(135deg,#a29bfe,#6c5ce7)',
-    shadow:'rgba(162,155,254,0.55)',
-    cards:['🐉','🦄','🧚','🔮','🏰','⚔️','🧜','🌈','🧙','🪄','🛡️','🧝','💎','🌙','✨']
-  },
-  {
-    id:'vehicles', name:'Vehicles', icon:'🚗',
-    gradient:'linear-gradient(135deg,#74b9ff,#0984e3)',
-    shadow:'rgba(116,185,255,0.55)',
-    cards:['🚗','🚌','🏎️','🚓','🚑','🚒','🚚','🚲','✈️','🚢','🚂','🚁','🛵','🛻','🚤']
-  },
-  {
-    id:'stationery', name:'Stationery', icon:'✏️',
-    gradient:'linear-gradient(135deg,#f8b500,#e05c00)',
-    shadow:'rgba(248,181,0,0.55)',
-    cards:['✏️','📝','📏','📐','📌','📎','🖇️','✂️','🖊️','📒','📓','📔','🖍️','📋','🗂️']
-  },
-  {
-    id:'makeup', name:'Makeup', icon:'💄',
-    gradient:'linear-gradient(135deg,#f953c6,#b91d73)',
-    shadow:'rgba(249,83,198,0.55)',
-    cards:['💄','💅','👄','💋','🪞','💍','💎','👛','🧴','🧖','💆','🪮','💇','🌸','✨']
-  }
+  { id:'animals',   name:'Animals',    icon:'🐾', gradient:'linear-gradient(135deg,#ff6b9d,#ff8e53)', shadow:'rgba(255,107,157,0.55)', cards:['🐶','🐱','🦊','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐙','🦋','🐢','🦒','🐧'] },
+  { id:'space',     name:'Space',      icon:'🚀', gradient:'linear-gradient(135deg,#667eea,#764ba2)', shadow:'rgba(102,126,234,0.55)', cards:['🚀','🌍','🌙','⭐','🪐','☄️','🛸','💫','🔭','🌠','🧑‍🚀','🌞','🌌','🛰️','🌟'] },
+  { id:'food',      name:'Yummy Food', icon:'🍕', gradient:'linear-gradient(135deg,#f9ca24,#f0932b)', shadow:'rgba(249,202,36,0.55)', cards:['🍕','🍔','🌮','🍦','🍩','🎂','🍪','🧁','🍭','🍫','🥪','🍜','🍣','🥐','🍎'] },
+  { id:'ocean',     name:'Ocean',      icon:'🐠', gradient:'linear-gradient(135deg,#48dbfb,#0abde3)', shadow:'rgba(72,219,251,0.55)',  cards:['🐠','🐬','🦈','🐙','🦑','🦀','🐡','🐚','🐳','🌊','🦭','🐟','🦐','🪸','🐋'] },
+  { id:'dinos',     name:'Dinosaurs',  icon:'🦕', gradient:'linear-gradient(135deg,#6ab04c,#badc58)', shadow:'rgba(106,176,76,0.55)',  cards:['🦕','🦖','🥚','🌋','🐾','🌿','🦴','💎','🌺','🍖','🔥','🌴','🦎','🐊','🌎'] },
+  { id:'sports',    name:'Sports',     icon:'⚽', gradient:'linear-gradient(135deg,#ff9f43,#ee5a24)', shadow:'rgba(255,159,67,0.55)',  cards:['⚽','🏀','🎾','🏈','🎱','🏓','🏸','🥊','🎿','🏊','🚴','🤸','🥅','🏆','🎯'] },
+  { id:'fruits',    name:'Fruits',     icon:'🍓', gradient:'linear-gradient(135deg,#fd79a8,#e17055)', shadow:'rgba(253,121,168,0.55)', cards:['🍎','🍊','🍋','🍇','🍓','🍑','🍒','🍍','🥭','🍈','🫐','🍉','🥥','🍌','🍐'] },
+  { id:'garden',    name:'Garden',     icon:'🌸', gradient:'linear-gradient(135deg,#e056fd,#7d5fff)', shadow:'rgba(224,86,253,0.55)',  cards:['🌸','🌺','🌻','🌹','🌷','💐','🌼','🌱','🍀','🌵','🎋','🍁','🍄','🌾','🪷'] },
+  { id:'fantasy',   name:'Fantasy',    icon:'🐉', gradient:'linear-gradient(135deg,#a29bfe,#6c5ce7)', shadow:'rgba(162,155,254,0.55)', cards:['🐉','🦄','🧚','🔮','🏰','⚔️','🧜','🌈','🧙','🪄','🛡️','🧝','💎','🌙','✨'] },
+  { id:'vehicles',  name:'Vehicles',   icon:'🚗', gradient:'linear-gradient(135deg,#74b9ff,#0984e3)', shadow:'rgba(116,185,255,0.55)', cards:['🚗','🚌','🏎️','🚓','🚑','🚒','🚚','🚲','✈️','🚢','🚂','🚁','🛵','🛻','🚤'] },
+  { id:'stationery',name:'Stationery', icon:'✏️', gradient:'linear-gradient(135deg,#f8b500,#e05c00)', shadow:'rgba(248,181,0,0.55)',  cards:['✏️','📝','📏','📐','📌','📎','🖇️','✂️','🖊️','📒','📓','📔','🖍️','📋','🗂️'] },
+  { id:'makeup',    name:'Makeup',     icon:'💄', gradient:'linear-gradient(135deg,#f953c6,#b91d73)', shadow:'rgba(249,83,198,0.55)',  cards:['💄','💅','👄','💋','🪞','💍','💎','👛','🧴','🧖','💆','🪮','💇','🌸','✨'] },
+  { id:'princess',  name:'Princess',   icon:'👸', gradient:'linear-gradient(135deg,#ffb7c5,#c471ed)', shadow:'rgba(196,113,237,0.55)', cards:['👸','🤴','🏰','👑','💒','🌹','🪄','🦋','💌','🎀','🧚','🌙','🦢','🕊️','💖'] },
+  { id:'weather',   name:'Weather',    icon:'⛅', gradient:'linear-gradient(135deg,#4fc3f7,#0277bd)', shadow:'rgba(79,195,247,0.55)',  cards:['☀️','🌧️','⛅','🌈','❄️','⛄','🌩️','🌪️','🌊','🌬️','🌤️','🌦️','🌫️','☔','🌡️'] },
+  { id:'dinner',    name:'Dinner',     icon:'🥘', gradient:'linear-gradient(135deg,#a8783a,#6d3f1f)', shadow:'rgba(168,120,58,0.55)',  cards:['🍝','🥩','🍗','🥗','🍲','🫕','🥘','🍛','🥧','🫔','🍱','🥣','🍤','🦞','🧆'] }
 ];
 
-/* ================================================================
-   STAR BACKGROUND
-================================================================ */
 (()=>{
-  const bg = document.getElementById('stars-bg');
+  const bg=document.getElementById('stars-bg');
   for(let i=0;i<90;i++){
     const s=document.createElement('div'); s.className='star';
     const sz=Math.random()*2.8+0.8;
-    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;
-      --dur:${2+Math.random()*5}s;--op:${0.25+Math.random()*0.75};--del:${Math.random()*6}s;`;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*5}s;--op:${0.25+Math.random()*0.75};--del:${Math.random()*6}s;`;
     bg.appendChild(s);
   }
 })();
 
-/* ================================================================
-   BUILD MENU
-================================================================ */
-const grid = document.getElementById('theme-grid');
+const grid=document.getElementById('theme-grid');
 THEMES.forEach((t,i)=>{
   const c=document.createElement('div'); c.className='theme-card';
   c.style.cssText=`background:${t.gradient};box-shadow:0 8px 26px ${t.shadow};animation-delay:${i*0.055}s;`;
@@ -463,27 +245,15 @@ THEMES.forEach((t,i)=>{
   grid.appendChild(c);
 });
 
-/* ================================================================
-   GAME STATE
-================================================================ */
-const G = {
-  theme:null, cards:[], flipped:[], matched:0, moves:0,
-  locked:false, timer:null, secs:0
-};
+const G={theme:null,cards:[],flipped:[],matched:0,moves:0,locked:false,timer:null,secs:0};
 
-/* ================================================================
-   START GAME
-================================================================ */
 function startGame(themeId){
-  const theme = THEMES.find(t=>t.id===themeId);
-  Object.assign(G,{theme, flipped:[], matched:0, moves:0, locked:false, secs:0});
+  const theme=THEMES.find(t=>t.id===themeId);
+  Object.assign(G,{theme,flipped:[],matched:0,moves:0,locked:false,secs:0});
   clearInterval(G.timer);
-  G.timer=setInterval(()=>{ G.secs++; refreshTimer(); },1000);
-
+  G.timer=setInterval(()=>{G.secs++;refreshTimer();},1000);
   const pairs=[...theme.cards,...theme.cards];
-  shuffle(pairs);
-  G.cards=pairs;
-
+  shuffle(pairs); G.cards=pairs;
   document.getElementById('hud-moves').textContent='0';
   document.getElementById('hud-pairs').textContent='0/15';
   document.getElementById('hud-time').textContent='0:00';
@@ -492,198 +262,133 @@ function startGame(themeId){
   show('game-screen');
 }
 
-/* ================================================================
-   BUILD BOARD
-================================================================ */
 function buildBoard(theme){
-  const board=document.getElementById('game-board');
-  board.innerHTML='';
+  const board=document.getElementById('game-board'); board.innerHTML='';
   G.cards.forEach((emoji,idx)=>{
     const card=document.createElement('div');
-    card.className='card';
-    card.dataset.idx=idx;
-    card.dataset.emoji=emoji;
-    card.innerHTML=`
-      <div class="card-inner">
-        <div class="card-face card-back" style="background:${theme.gradient};box-shadow:inset 0 0 0 2px rgba(255,255,255,0.22);">
-          <span style="font-size:clamp(1rem,2.8vw,1.8rem);opacity:0.35;">${theme.icon}</span>
-        </div>
-        <div class="card-face card-front"><span>${emoji}</span></div>
-      </div>`;
+    card.className='card'; card.dataset.idx=idx; card.dataset.emoji=emoji;
+    card.innerHTML=`<div class="card-inner">
+      <div class="card-face card-back" style="background:${theme.gradient};box-shadow:inset 0 0 0 2px rgba(255,255,255,0.22);">
+        <span style="font-size:clamp(1rem,2.8vw,1.8rem);opacity:0.35;">${theme.icon}</span>
+      </div>
+      <div class="card-face card-front"><span>${emoji}</span></div>
+    </div>`;
     card.onclick=()=>onCardClick(card);
     board.appendChild(card);
-    // staggered appear
     card.style.animation=`tCardIn 0.4s cubic-bezier(.34,1.56,.64,1) ${idx*0.025}s both`;
   });
 }
 
-/* ================================================================
-   CARD CLICK
-================================================================ */
 function onCardClick(card){
   if(G.locked||card.classList.contains('flipped')||card.classList.contains('matched')||G.flipped.length===2) return;
-  card.classList.add('flipped');
-  G.flipped.push(card);
-  playSound('flip');
-  if(G.flipped.length===2){ G.moves++; refreshHUD(); G.locked=true; checkMatch(); }
+  card.classList.add('flipped'); G.flipped.push(card); playSound('flip');
+  if(G.flipped.length===2){G.moves++;refreshHUD();G.locked=true;checkMatch();}
 }
 
 function checkMatch(){
   const [a,b]=G.flipped;
-  // Enable fast-flip after first pair evaluated
   if(G.moves>=1) document.getElementById('game-board').classList.add('fast-flip');
-  const isFast = G.moves > 1;
+  const isFast=G.moves>1;
   if(a.dataset.emoji===b.dataset.emoji){
     setTimeout(()=>{
       a.classList.add('matched'); b.classList.add('matched');
-      playSound('match');
-      spawnMatchFX(a); spawnMatchFX(b);
+      playSound('match'); spawnMatchFX(a); spawnMatchFX(b);
       G.matched++; refreshHUD(); G.flipped=[]; G.locked=false;
       if(G.matched===15) setTimeout(showWin,700);
     },isFast?100:180);
   } else {
     setTimeout(()=>{
-      a.classList.add('wrong'); b.classList.add('wrong');
-      playSound('wrong');
+      a.classList.add('wrong'); b.classList.add('wrong'); playSound('wrong');
       setTimeout(()=>{
-        a.classList.remove('flipped','wrong');
-        b.classList.remove('flipped','wrong');
+        a.classList.remove('flipped','wrong'); b.classList.remove('flipped','wrong');
         G.flipped=[]; G.locked=false;
       },isFast?300:600);
     },isFast?450:850);
   }
 }
 
-/* ================================================================
-   HUD & TIMER
-================================================================ */
 function refreshHUD(){
   document.getElementById('hud-moves').textContent=G.moves;
   document.getElementById('hud-pairs').textContent=`${G.matched}/15`;
 }
 function refreshTimer(){
-  const m=Math.floor(G.secs/60), s=G.secs%60;
+  const m=Math.floor(G.secs/60),s=G.secs%60;
   document.getElementById('hud-time').textContent=`${m}:${String(s).padStart(2,'0')}`;
 }
 
-/* ================================================================
-   MATCH FX
-================================================================ */
 function spawnMatchFX(card){
   const r=card.getBoundingClientRect();
-  const cx=r.left+r.width/2, cy=r.top+r.height/2;
-
-  // ripple
+  const cx=r.left+r.width/2,cy=r.top+r.height/2;
   const rip=document.createElement('div'); rip.className='match-ripple';
   rip.style.cssText=`left:${cx}px;top:${cy}px;width:${r.width}px;height:${r.height}px;`;
-  document.body.appendChild(rip);
-  setTimeout(()=>rip.remove(),700);
-
-  // star particles
+  document.body.appendChild(rip); setTimeout(()=>rip.remove(),700);
   const emojis=['⭐','✨','💫','🌟','🎉'];
   for(let i=0;i<6;i++){
     const p=document.createElement('div'); p.className='match-particle';
-    const ang=(i/6)*Math.PI*2+Math.random()*0.6;
-    const dist=55+Math.random()*60;
+    const ang=(i/6)*Math.PI*2+Math.random()*0.6, dist=55+Math.random()*60;
     p.style.cssText=`left:${cx}px;top:${cy}px;--tx:${Math.cos(ang)*dist}px;--ty:${Math.sin(ang)*dist}px;--pdur:${0.55+Math.random()*0.35}s;`;
     p.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),950);
+    document.body.appendChild(p); setTimeout(()=>p.remove(),950);
   }
 }
 
-/* ================================================================
-   WIN SCREEN
-================================================================ */
 function showWin(){
   clearInterval(G.timer);
-  const m=Math.floor(G.secs/60), s=G.secs%60;
-  const timeStr=`${m}:${String(s).padStart(2,'0')}`;
+  const m=Math.floor(G.secs/60),s=G.secs%60;
   const stars=ratePerformance(G.moves,G.secs);
-
   document.getElementById('win-emoji').textContent=G.theme.icon;
   document.getElementById('win-sub-text').textContent=`${G.theme.name} — ${starMsg(stars)}`;
   document.getElementById('win-moves-val').textContent=G.moves;
-  document.getElementById('win-time-val').textContent=timeStr;
-
-  // Star rating
+  document.getElementById('win-time-val').textContent=`${m}:${String(s).padStart(2,'0')}`;
   const sr=document.getElementById('star-row'); sr.innerHTML='';
   for(let i=0;i<3;i++){
-    const s=document.createElement('span'); s.className='rating-star';
-    s.textContent=i<stars?'⭐':'☆';
-    s.style.animationDelay=`${0.3+i*0.15}s`;
-    sr.appendChild(s);
+    const st=document.createElement('span'); st.className='rating-star';
+    st.textContent=i<stars?'⭐':'☆'; st.style.animationDelay=`${0.3+i*0.15}s`;
+    sr.appendChild(st);
   }
-
-  launchConfetti();
-  playSound('win');
-  show('win-screen');
+  launchConfetti(); playSound('win'); show('win-screen');
 }
-
-function ratePerformance(moves,secs){
-  if(moves<=18&&secs<=60) return 3;
-  if(moves<=25&&secs<=120) return 2;
-  return 1;
-}
+function ratePerformance(moves,secs){ return (moves<=18&&secs<=60)?3:(moves<=25&&secs<=120)?2:1; }
 function starMsg(n){ return ['Keep practicing!','Well done!','Perfect memory!'][n-1]; }
 
-/* ================================================================
-   CONFETTI
-================================================================ */
 function launchConfetti(){
   const box=document.getElementById('confetti-box'); box.innerHTML='';
   const cols=['#ff6b6b','#feca57','#48dbfb','#ff9ff3','#54a0ff','#5f27cd','#00d2d3','#ff9f43','#ffd700','#2ecc71','#fd79a8'];
   for(let i=0;i<140;i++){
     const p=document.createElement('div'); p.className='cpiece';
-    const sz=6+Math.random()*10, circ=Math.random()>0.45;
-    p.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${circ?sz:sz*0.38+4}px;
-      background:${cols[i%cols.length]};border-radius:${circ?'50%':'2px'};
-      animation-delay:${Math.random()*1.8}s;animation-duration:${2.4+Math.random()*2}s;`;
+    const sz=6+Math.random()*10,circ=Math.random()>0.45;
+    p.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${circ?sz:sz*0.38+4}px;background:${cols[i%cols.length]};border-radius:${circ?'50%':'2px'};animation-delay:${Math.random()*1.8}s;animation-duration:${2.4+Math.random()*2}s;`;
     box.appendChild(p);
   }
 }
 
-/* ================================================================
-   SOUND  (Web Audio API — soothing synthesized tones)
-================================================================ */
 let actx=null;
 function ac(){ if(!actx)try{actx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){} return actx; }
 
 function playSound(type){
   const ctx=ac(); if(!ctx) return;
   const t=ctx.currentTime;
-
-  // Soft bell/marimba-like tone with gentle attack and long decay
-  const bell=(freq, delay=0, vol=0.18, dur=0.9)=>{
-    const o=ctx.createOscillator(), o2=ctx.createOscillator();
-    const g=ctx.createGain();
-    const rev=ctx.createConvolver();
+  const bell=(freq,delay,vol,dur)=>{
+    delay=delay||0; vol=vol||0.18; dur=dur||0.9;
+    const o=ctx.createOscillator(),o2=ctx.createOscillator(),g=ctx.createGain();
     o.connect(g); o2.connect(g); g.connect(ctx.destination);
     o.type='sine'; o.frequency.value=freq;
-    o2.type='sine'; o2.frequency.value=freq*2.756; // inharmonic partial for bell character
+    o2.type='sine'; o2.frequency.value=freq*2.756;
     const st=t+delay;
-    g.gain.setValueAtTime(0, st);
-    g.gain.linearRampToValueAtTime(vol, st+0.012);       // soft attack
-    g.gain.exponentialRampToValueAtTime(vol*0.35, st+0.08);
-    g.gain.exponentialRampToValueAtTime(0.0001, st+dur);
-    o.start(st); o.stop(st+dur+0.05);
-    o2.start(st); o2.stop(st+0.12); // short partial
+    g.gain.setValueAtTime(0,st); g.gain.linearRampToValueAtTime(vol,st+0.012);
+    g.gain.exponentialRampToValueAtTime(vol*0.35,st+0.08); g.gain.exponentialRampToValueAtTime(0.0001,st+dur);
+    o.start(st); o.stop(st+dur+0.05); o2.start(st); o2.stop(st+0.12);
   };
-
-  // Gentle sub-bass thud for body
-  const thud=(freq, delay=0, vol=0.12)=>{
-    const o=ctx.createOscillator(), g=ctx.createGain();
-    o.connect(g); g.connect(ctx.destination);
-    o.type='sine'; const st=t+delay;
-    o.frequency.setValueAtTime(freq*1.6, st);
-    o.frequency.exponentialRampToValueAtTime(freq, st+0.06);
-    g.gain.setValueAtTime(vol, st);
-    g.gain.exponentialRampToValueAtTime(0.0001, st+0.18);
+  const thud=(freq,delay,vol)=>{
+    delay=delay||0; vol=vol||0.12;
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.connect(g); g.connect(ctx.destination); o.type='sine'; const st=t+delay;
+    o.frequency.setValueAtTime(freq*1.6,st); o.frequency.exponentialRampToValueAtTime(freq,st+0.06);
+    g.gain.setValueAtTime(vol,st); g.gain.exponentialRampToValueAtTime(0.0001,st+0.18);
     o.start(st); o.stop(st+0.22);
   };
-
-  // Soft airy shimmer (high filtered noise)
-  const shimmer=(delay=0, vol=0.06, dur=0.18)=>{
+  const shimmer=(delay,vol,dur)=>{
+    delay=delay||0; vol=vol||0.06; dur=dur||0.18;
     const bufSz=Math.floor(ctx.sampleRate*dur);
     const buf=ctx.createBuffer(1,bufSz,ctx.sampleRate);
     const d=buf.getChannelData(0);
@@ -695,81 +400,33 @@ function playSound(type){
     src.connect(hpf); hpf.connect(g); g.connect(ctx.destination);
     src.start(st); src.stop(st+dur+0.02);
   };
-
-  if(type==='flip'){
-    // Gentle soft chime — a single muted bell note
-    bell(740, 0, 0.11, 0.55);
-    shimmer(0, 0.05, 0.12);
-  }
-
+  if(type==='flip'){ bell(740,0,0.11,0.55); shimmer(0,0.05,0.12); }
   if(type==='wrong'){
-    // Low soft dull thud — no harsh sawtooth, just a descending hum
-    const o=ctx.createOscillator(), g=ctx.createGain();
-    o.connect(g); g.connect(ctx.destination);
-    o.type='sine';
-    o.frequency.setValueAtTime(260, t);
-    o.frequency.exponentialRampToValueAtTime(140, t+0.28);
-    g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.13, t+0.015);
-    g.gain.exponentialRampToValueAtTime(0.0001, t+0.38);
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.connect(g); g.connect(ctx.destination); o.type='sine';
+    o.frequency.setValueAtTime(260,t); o.frequency.exponentialRampToValueAtTime(140,t+0.28);
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(0.13,t+0.015); g.gain.exponentialRampToValueAtTime(0.0001,t+0.38);
     o.start(t); o.stop(t+0.4);
-    // second low harmonic for warmth
-    const o2=ctx.createOscillator(), g2=ctx.createGain();
-    o2.connect(g2); g2.connect(ctx.destination);
-    o2.type='sine'; o2.frequency.setValueAtTime(130,t); o2.frequency.exponentialRampToValueAtTime(90,t+0.28);
+    const o2=ctx.createOscillator(),g2=ctx.createGain();
+    o2.connect(g2); g2.connect(ctx.destination); o2.type='sine';
+    o2.frequency.setValueAtTime(130,t); o2.frequency.exponentialRampToValueAtTime(90,t+0.28);
     g2.gain.setValueAtTime(0.07,t); g2.gain.exponentialRampToValueAtTime(0.0001,t+0.3);
     o2.start(t); o2.stop(t+0.32);
   }
-
-  if(type==='match'){
-    // Bright ascending pentatonic chime — C E G, soft and warm
-    const notes=[523.25, 659.25, 783.99];
-    notes.forEach((f,i)=>{
-      bell(f, i*0.1, 0.15, 1.1);
-      if(i===0) thud(f, 0, 0.09);
-    });
-    shimmer(0.05, 0.07, 0.2);
-  }
-
+  if(type==='match'){ [523.25,659.25,783.99].forEach((f,i)=>{ bell(f,i*0.1,0.15,1.1); if(i===0) thud(f,0,0.09); }); shimmer(0.05,0.07,0.2); }
   if(type==='win'){
-    // Flowing pentatonic arpeggio — C E G C E, gentle and uplifting
-    const notes=[523.25, 659.25, 783.99, 1046.50, 1318.51];
-    notes.forEach((f,i)=>{
-      bell(f, i*0.13, 0.16, 1.4);
-    });
-    thud(261.63, 0, 0.12);
-    shimmer(0.1, 0.09, 0.3);
-    shimmer(0.52, 0.07, 0.25);
+    [523.25,659.25,783.99,1046.50,1318.51].forEach((f,i)=>bell(f,i*0.13,0.16,1.4));
+    thud(261.63,0,0.12); shimmer(0.1,0.09,0.3); shimmer(0.52,0.07,0.25);
   }
 }
 
-/* ================================================================
-   SCREEN MANAGEMENT
-================================================================ */
-function show(id){
-  ['menu-screen','game-screen','win-screen'].forEach(s=>
-    document.getElementById(s).classList.toggle('hidden',s!==id));
-}
+function show(id){ ['menu-screen','game-screen','win-screen'].forEach(s=>document.getElementById(s).classList.toggle('hidden',s!==id)); }
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } }
 
-/* ================================================================
-   UTILS
-================================================================ */
-function shuffle(a){
-  for(let i=a.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [a[i],a[j]]=[a[j],a[i]];
-  }
-}
-
-/* ================================================================
-   BUTTON HANDLERS
-================================================================ */
-document.getElementById('back-btn').onclick=()=>{ clearInterval(G.timer); show('menu-screen'); };
+document.getElementById('back-btn').onclick=()=>{clearInterval(G.timer);show('menu-screen');};
 document.getElementById('btn-again').onclick=()=>startGame(G.theme.id);
-document.getElementById('btn-themes').onclick=()=>{ clearInterval(G.timer); show('menu-screen'); };
-
-/* ── Resume audio context on any interaction (mobile requirement) ── */
-document.body.addEventListener('pointerdown',()=>{ const c=ac(); if(c&&c.state==='suspended') c.resume(); },{once:true});
+document.getElementById('btn-themes').onclick=()=>{clearInterval(G.timer);show('menu-screen');};
+document.body.addEventListener('pointerdown',()=>{const c=ac();if(c&&c.state==='suspended')c.resume();},{once:true});
 </script>
 </body>
 </html>
